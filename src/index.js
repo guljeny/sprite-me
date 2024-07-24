@@ -4,7 +4,7 @@ const { exec, spawnSync } = require('child_process');
 const packer = require('./packer');
 
 const defaultOptions = {
-  fileName: 'spriteMe.png',
+  format: 'png',
 };
 
 const asyncExec = util.promisify(exec);
@@ -13,7 +13,6 @@ const spriteMe = async (files, userOptions) => {
   const options = { ...defaultOptions, ...userOptions };
 
   const blocks = await Promise.all(files.map(async img => {
-    /* eslint-disable max-len */
     const { stdout } = await asyncExec(`identify -ping -format '%w:%h' ${img}`);
     const [w, h] = stdout.split(':');
 
@@ -26,42 +25,42 @@ const spriteMe = async (files, userOptions) => {
 
   rects.forEach(rect => {
     const { img, x, y } = rect;
+    // eslint-disable-next-line max-len
     args.push('(', img, '-geometry', `+${x}+${y}`, '-background', 'transparent', ')', '-composite');
   });
 
-  args.push('png:-');
+  args.push(`${options.format}:-`);
 
   const r = spawnSync('magick', args);
   const err = r.stderr.toString();
-  const png = r.stdout.toString();
+
   if (err) {
     throw new Error(err);
   }
 
-  const json = {
-    meta: {
-      image: options.fileName,
-      size: { w: width, h: height },
-      scale: 1,
-    },
-    frames: rects.reduce((acc, rect) => {
-      const { img, x, y, w, h } = rect;
-      const imgName = path.basename(img);
-
-      return {
-        ...acc,
-        [imgName]: {
-          frame: { x, y, w, h },
-          spriteSourceSize: { x: 0, y: 0, w, h },
-          sourceSize: { w, h },
-        },
-      };
-    }, {}),
+  const meta = {
+    size: { w: width, h: height },
+    scale: 1,
   };
 
+  const frames = rects.reduce((acc, rect) => {
+    const { img, x, y, w, h } = rect;
+    const imgName = path.basename(img);
+
+    return {
+      ...acc,
+      [imgName]: {
+        frame: { x, y, w, h },
+        spriteSourceSize: { x: 0, y: 0, w, h },
+        sourceSize: { w, h },
+      },
+    };
+  }, {});
+
   return {
-    png,
-    json,
+    image: r.stdout,
+    meta,
+    frames,
   };
 };
 

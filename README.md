@@ -9,7 +9,6 @@ SpriteMe designed as core module which do not create or modify any files.
 
   For example on MacOS run: `brew install imagemagick`.
 - Install package: `npm i -s sprite-me`.
-- ✨Yo're awesome✨
 
 ## Usage
 Base usage `spriteMe(string[], options?: Object)`. 

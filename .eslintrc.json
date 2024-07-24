@@ -1,0 +1,125 @@
+{
+  "root": true,
+  "extends": ["eslint-config-airbnb-base"],
+  "env": {
+    "es6": true,
+    "es2017": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ]
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": [
+          "multiline-const",
+          "multiline-let"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "multiline-const",
+          "multiline-let"
+        ]
+      },
+      {
+        "blankLine": "never",
+        "prev": [
+          "singleline-let",
+          "singleline-const"
+        ],
+        "next": [
+          "singleline-let",
+          "singleline-const"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "function"
+      }
+    ],
+    "space-before-function-paren": ["error", "always"],
+    "newline-before-return": "error",
+    "semi": ["error", "always"],
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "import/prefer-default-export": "off",
+    "no-console": "error",
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "no-use-before-define": "error",
+    "no-await-in-loop": "off",
+    "no-restricted-syntax": "off",
+    "import/no-cycle": "error",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "no-nested-ternary": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 80
+      }
+    ],
+    "prefer-spread": "off",
+    "import/no-extraneous-dependencies": "error",
+    "no-shadow": "error",
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "no-param-reassign": "error",
+    "no-underscore-dangle": "off",
+    "no-prototype-builtins": "off",
+    "prefer-destructuring": "off",
+    "import/no-mutable-exports": "error",
+    "no-restricted-exports": ["error", { "restrictedNamedExports": ["off"] }],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-alert": "off",
+    "max-classes-per-file": [
+      "error",
+      1
+    ],
+    "no-useless-constructor": "off",
+    "class-methods-use-this": "error",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-multi-assign": "error",
+    "no-param-reassign": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "eol-last": ["error", "always"],
+    "cypress/no-unnecessary-waiting": "off"
+  }
+}

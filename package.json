@@ -1,0 +1,15 @@
+{
+  "name": "spriteme",
+  "version": "1.0.0",
+  "description": "Core for spritesheet generation based on ImageMagick",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "npx eslint -c .eslintrc.json ./src"
+  },
+  "author": "Yauheni Hul",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0"
+  }
+}

@@ -49,6 +49,7 @@ const images = ['./img1.png', './img2.png'];
 
 Options can be passed as second argument
 
-- `format` - default 'png' - format of compiled image.
+`spriteMe(images, { format: 'jpg', gap: 100 })`
 
-  `spriteMe(images, { format: 'jpg' })`
+- `format` - Default `png` - Format of compiled image.
+- `gap` - Default `10` - Distance beetween images.

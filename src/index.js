@@ -5,6 +5,7 @@ const packer = require('./packer');
 
 const defaultOptions = {
   format: 'png',
+  gap: 10,
 };
 
 const asyncExec = util.promisify(exec);
@@ -19,7 +20,7 @@ const spriteMe = async (files, userOptions) => {
     return { w: Number.parseInt(w, 10), h: Number.parseInt(h, 10), img };
   }));
 
-  const { width, height, rects } = packer(blocks);
+  const { width, height, rects } = packer(blocks, { gap: options.gap });
   const args = [];
   args.push('(', '-size', `${width}x${height}`, 'xc:none', ')');
 

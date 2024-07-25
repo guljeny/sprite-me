@@ -1,6 +1,14 @@
 const Node = require('./Node');
 
+const defaultOptions = {
+  gap: 0,
+};
+
 class GrowingPacker {
+  constructor (options = {}) {
+    this.options = { ...defaultOptions, ...options };
+  }
+
   fit (blocks) {
     const len = blocks.length;
     const w = len > 0 ? blocks[0].w : 0;
@@ -30,11 +38,11 @@ class GrowingPacker {
     return null;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   splitNode (node, w, h) {
+    const { gap } = this.options;
     node.used = true;
-    node.down = new Node(node.x, node.y + h, node.w, node.h - h);
-    node.right = new Node(node.x + w, node.y, node.w - w, h);
+    node.down = new Node(node.x, node.y + h + gap, node.w, node.h - h);
+    node.right = new Node(node.x + w + gap, node.y, node.w - w, h);
 
     return node;
   }
@@ -56,10 +64,11 @@ class GrowingPacker {
   }
 
   growRight (w, h) {
-    const newRoot = new Node(0, 0, this.root.w + w, this.root.h);
+    const { gap } = this.options;
+    const newRoot = new Node(0, 0, this.root.w + w + gap, this.root.h);
     newRoot.used = true;
     newRoot.down = this.root;
-    newRoot.right = new Node(this.root.w, 0, w, this.root.h);
+    newRoot.right = new Node(this.root.w + gap, 0, w, this.root.h);
     this.root = newRoot;
 
     const node = this.findNode(this.root, w, h);
@@ -69,9 +78,10 @@ class GrowingPacker {
   }
 
   growDown (w, h) {
-    const newRoot = new Node(0, 0, this.root.w, this.root.h + h);
+    const { gap } = this.options;
+    const newRoot = new Node(0, 0, this.root.w, this.root.h + h + gap);
     newRoot.used = true;
-    newRoot.down = new Node(0, this.root.h, this.root.w, h);
+    newRoot.down = new Node(0, this.root.h + gap, this.root.w, h);
     newRoot.right = this.root;
     this.root = newRoot;
 
@@ -82,11 +92,11 @@ class GrowingPacker {
   }
 }
 
-const packer = blocks => {
-  const sorted = blocks.toSorted((a, b) => b.h - a.h);
-  const growingPacker = new GrowingPacker();
+const packer = (blocks, options) => {
+  blocks.sort((a, b) => b.h - a.h);
+  const growingPacker = new GrowingPacker(options);
 
-  return growingPacker.fit(sorted);
+  return growingPacker.fit(blocks);
 };
 
 module.exports = packer;

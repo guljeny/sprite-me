@@ -40,9 +40,10 @@ class GrowingPacker {
 
   splitNode (node, w, h) {
     const { gap } = this.options;
+    console.log('split', node, w, h, gap);
     node.used = true;
-    node.down = new Node(node.x, node.y + h + gap, node.w, node.h - h);
-    node.right = new Node(node.x + w + gap, node.y, node.w - w, h);
+    node.down = new Node(node.x, node.y + h + gap, node.w, node.h - h - gap);
+    node.right = new Node(node.x + w + gap, node.y, node.w - w - gap, h);
 
     return node;
   }

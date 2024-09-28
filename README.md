@@ -11,8 +11,8 @@ If you want build sprites during build procces look at [Sprite-me webpack plugin
 
     **Version `7` is required**. Check it by running `magick --version`
 
-  > I recomend to use [ImageMagick Easy Instal](https://github.com/SoftCreatR/imei/)
-  > Some package managers like `brew` can install imagemagick with version 6
+  > I recomend to use [ImageMagick Easy Instal](https://github.com/SoftCreatR/imei/)  
+    Some package managers like `brew` can install imagemagick with version 6
   
 - Install package: `npm i -s sprite-me`.
 

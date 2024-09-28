@@ -1,6 +1,6 @@
 {
   "name": "sprite-me",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Core for spritesheet generation based on ImageMagick",
   "main": "src/index.js",
   "scripts": {
@@ -8,8 +8,16 @@
     "lint": "npx eslint -c .eslintrc.json ./src"
   },
   "author": "Yauheni Hul",
-  "repository": "github:guljeny/spriteMe",
+  "repository": "github:guljeny/sprite-me",
   "license": "ISC",
+  "keywords": [
+    "sprite",
+    "spritesheet",
+    "imagemagick",
+    "image generation",
+    "atlass",
+    "image"
+  ],
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",

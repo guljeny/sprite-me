@@ -1,17 +1,23 @@
-# SpriteMe
+# Sprite-me
 _The spritesheet creation tool for Node.js_
 
 SpriteMe designed as core module which do not create or modify any files.
 
+If you want build sprites during build procces look at [Sprite-me webpack plugin](https://www.npmjs.com/package/spriteme-webpack-plugin)
+
 ## Installation
 
-- Install [ImageMagic](https://imagemagick.org/script/download.php).
+- Install [ImageMagic V7](https://imagemagick.org/script/download.php).
 
-  For example on MacOS run: `brew install imagemagick`.
+    **Version `7` is required**. Check it by running `magick --version`
+
+  > I recomend to use [ImageMagick Easy Instal](https://github.com/SoftCreatR/imei/)
+  > Some package managers like `brew` can install imagemagick with version 6
+  
 - Install package: `npm i -s sprite-me`.
 
 ## Usage
-Base usage `spriteMe(string[], options?: Object)`. 
+Base usage `spriteMe(images: string[], options?: Object)`. 
 
 Returns object with next keys:
 
